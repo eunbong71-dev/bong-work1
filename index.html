@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>'AI 앱 제작소' 비교과 수업 초대장</title>
+  
+  <!-- Font Embedding (Pretendard & Plus Jakarta Sans) -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Styling -->
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <!-- Ambient background glow particles -->
+  <div class="ambient-glow bg-glow-1"></div>
+  <div class="ambient-glow bg-glow-2"></div>
+  
+  <div class="mobile-container">
+    
+    <!-- Hero Section -->
+    <header class="hero-section">
+      <div class="hero-badge">
+        <i class="fa-solid fa-microchip-heading fa-cpu animate-pulse"></i>
+        <span>AI Workshop 2026</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="gradient-text">AI 앱 제작소</span>
+        <span class="sub-title">비교과 수업 초대장</span>
+      </h1>
+      <p class="hero-tagline">상상을 현실로 만드는 인공지능 앱 개발</p>
+      
+      <!-- Hero Cover Image -->
+      <div class="hero-image-wrapper">
+        <img src="/pictures/화면 캡처 2026-07-05 063657.jpg" alt="AI 앱 제작소 메인 이미지" class="hero-image">
+        <div class="image-overlay"></div>
+      </div>
+    </header>
+
+    <!-- Invitation Message Section -->
+    <section class="section invite-section glass-card">
+      <div class="section-icon-wrapper">
+        <i class="fa-solid fa-envelope-open-text icon-gradient"></i>
+      </div>
+      <h2 class="section-title">초대합니다</h2>
+      <div class="invite-text-content">
+        <p class="highlight-p">"AI 앱 제작소에 여러분을 초대합니다."</p>
+        <p>인공지능을 활용해 직접 아이디어를 기획하고, 실제 동작하는 나만의 AI 애플리케이션을 제작하는 특별한 비교과 프로그램입니다.</p>
+        <p class="emoji-line">💡 <span>재미있고 유익한 수업이니 많은 참여 부탁드립니다.</span></p>
+      </div>
+    </section>
+
+    <!-- Countdown Timer Section -->
+    <section class="section countdown-section glass-card">
+      <h2 class="section-title">행사 시작까지 남은 시간</h2>
+      
+      <div class="timer-display">
+        <div class="timer-unit">
+          <div class="timer-num-wrapper">
+            <span id="days" class="timer-num">00</span>
+          </div>
+          <span class="timer-label">DAYS</span>
+        </div>
+        <div class="timer-separator">:</div>
+        <div class="timer-unit">
+          <div class="timer-num-wrapper">
+            <span id="hours" class="timer-num">00</span>
+          </div>
+          <span class="timer-label">HOURS</span>
+        </div>
+        <div class="timer-separator">:</div>
+        <div class="timer-unit">
+          <div class="timer-num-wrapper">
+            <span id="minutes" class="timer-num">00</span>
+          </div>
+          <span class="timer-label">MINS</span>
+        </div>
+        <div class="timer-separator">:</div>
+        <div class="timer-unit">
+          <div class="timer-num-wrapper">
+            <span id="seconds" class="timer-num">00</span>
+          </div>
+          <span class="timer-label">SECS</span>
+        </div>
+      </div>
+      
+      <!-- Live Progress Bar -->
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="countdown-progress"></div>
+      </div>
+      <p class="countdown-target-desc" id="target-date-string">2026년 7월 6일(월) 오후 5:00 시작</p>
+    </section>
+
+    <!-- Event Info Details Section -->
+    <section class="section info-section glass-card">
+      <h2 class="section-title">상세 일정 및 장소</h2>
+      
+      <div class="info-list">
+        <div class="info-item">
+          <div class="info-icon">
+            <i class="fa-regular fa-calendar-days"></i>
+          </div>
+          <div class="info-details">
+            <h3>일정</h3>
+            <p>7월 6일(월) ~ 7월 8일(수)</p>
+            <span class="info-badge">3일간 진행</span>
+          </div>
+        </div>
+        
+        <div class="info-item">
+          <div class="info-icon">
+            <i class="fa-regular fa-clock"></i>
+          </div>
+          <div class="info-details">
+            <h3>시간</h3>
+            <p>오후 5시 ~ 8시 (총 3시간)</p>
+          </div>
+        </div>
+        
+        <div class="info-item">
+          <div class="info-icon">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <div class="info-details">
+            <h3>장소</h3>
+            <p>12호관 302호</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Calendar Add Buttons -->
+      <div class="calendar-actions">
+        <a id="btn-gcal" class="btn btn-outline" target="_blank" href="#">
+          <i class="fa-brands fa-google"></i> 구글 캘린더 등록
+        </a>
+      </div>
+    </section>
+
+    <!-- Swipeable Photo Gallery Section -->
+    <section class="section gallery-section glass-card">
+      <h2 class="section-title">갤러리</h2>
+      
+      <!-- Slider Wrapper -->
+      <div class="slider-container" id="gallery-slider">
+        <div class="slider-wrapper" id="slider-wrapper">
+          <div class="slide active">
+            <img src="/pictures/화면 캡처 2026-07-05 063657.jpg" alt="수업 이미지 1" class="gallery-img">
+          </div>
+          <div class="slide">
+            <img src="/pictures/화면 캡처 2026-07-05 063748.jpg" alt="수업 이미지 2" class="gallery-img">
+          </div>
+          <div class="slide">
+            <img src="/pictures/화면 캡처 2026-07-05 063820.jpg" alt="수업 이미지 3" class="gallery-img">
+          </div>
+        </div>
+        
+        <!-- Navigation Arrows -->
+        <button class="slider-arrow prev" id="slider-prev" aria-label="이전 사진">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button class="slider-arrow next" id="slider-next" aria-label="다음 사진">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+        
+        <!-- Dots Indicators -->
+        <div class="slider-dots" id="slider-dots">
+          <span class="dot active"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+      <p class="gallery-tip"><i class="fa-solid fa-hand-pointer"></i> 좌우로 스와이프하여 사진을 확인해보세요. 터치 시 확대됩니다.</p>
+    </section>
+
+    <!-- Map & Directions Section -->
+    <section class="section map-section glass-card">
+      <h2 class="section-title">오시는 길</h2>
+      <div class="map-placeholder">
+        <i class="fa-solid fa-map-location-dot map-icon animate-bounce-slow"></i>
+        <span class="map-campus-text">12호관 302호</span>
+        <span class="map-sub-text">지도를 확인하시려면 아래 버튼을 눌러주세요.</span>
+      </div>
+      
+      <div class="map-buttons">
+        <button id="btn-copy-address" class="btn btn-outline">
+          <i class="fa-regular fa-copy"></i> 주소 복사하기
+        </button>
+        <a href="https://map.naver.com/" target="_blank" class="btn btn-primary" id="btn-naver-map">
+          <i class="fa-solid fa-location-arrow"></i> 네이버 지도 열기
+        </a>
+      </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section class="section rsvp-section glass-card">
+      <div class="rsvp-badge">RSVP</div>
+      <h2 class="section-title">참가 신청하기</h2>
+      <p class="rsvp-desc">수업 참가 신청을 미리 작성해주시면 더 원활하게 수업을 준비할 수 있습니다.</p>
+      
+      <form id="rsvp-form" class="rsvp-form">
+        <div class="input-group">
+          <label for="rsvp-name">이름</label>
+          <input type="text" id="rsvp-name" placeholder="이름을 입력하세요" required>
+        </div>
+        
+        <div class="input-group">
+          <label for="rsvp-phone">연락처</label>
+          <input type="tel" id="rsvp-phone" placeholder="010-0000-0000" required>
+        </div>
+        
+        <div class="input-group">
+          <label for="rsvp-dept">학과/소속</label>
+          <input type="text" id="rsvp-dept" placeholder="학과를 입력하세요" required>
+        </div>
+
+        <button type="submit" class="btn btn-submit" id="btn-submit-rsvp">
+          <span class="btn-text">신청하기</span>
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </form>
+      
+      <!-- RSVP Success State -->
+      <div class="rsvp-success-state hidden" id="rsvp-success">
+        <div class="success-icon-wrapper">
+          <i class="fa-solid fa-circle-check success-icon"></i>
+        </div>
+        <h3>신청이 완료되었습니다!</h3>
+        <p>AI 앱 제작소 비교과 수업에서 뵙겠습니다.</p>
+        <button type="button" class="btn btn-outline" id="btn-rsvp-reset">새로 신청하기</button>
+      </div>
+
+      <!-- Live Participant Counter -->
+      <div class="rsvp-status-panel">
+        <div class="status-metric">
+          <span class="status-label">현재 신청자 수</span>
+          <span class="status-val" id="participant-count">0</span>
+        </div>
+        <div class="status-recent-list" id="recent-participants-list">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Share Section -->
+    <footer class="footer-section">
+      <div class="share-actions">
+        <button id="btn-share" class="btn btn-share-link">
+          <i class="fa-solid fa-share-nodes"></i> 초대장 공유하기
+        </button>
+      </div>
+      <p class="footer-copyright">© 2026 AI 앱 제작소. All Rights Reserved.</p>
+    </footer>
+  </div>
+
+  <!-- Lightbox Modal for Gallery Images -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close" aria-label="닫기">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <img src="" alt="확대 이미지" class="lightbox-img" id="lightbox-img">
+  </div>
+  
+  <!-- Custom Javascript -->
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
