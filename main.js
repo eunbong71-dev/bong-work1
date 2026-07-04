@@ -311,7 +311,16 @@ function initRSVP() {
     );
   }
 
-  form.addEventListener('submit', (e) => {
+  // Clear participants button handler
+  const clearBtn = document.getElementById('btn-clear-participants');
+  clearBtn.addEventListener('click', () => {
+    // Remove from localStorage
+    localStorage.removeItem('rsvp_participants');
+    // Reset participants array
+    participants = [];
+    renderParticipants();
+    showToast('모든 신청자 데이터가 초기화되었습니다.');
+  });
     e.preventDefault();
     
     const nameVal = document.getElementById('rsvp-name').value.trim();
