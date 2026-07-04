@@ -7,9 +7,6 @@ const EVENT_LOCATION = '12호관 302호';
 
 // Mock participants to show if local storage is empty
 const MOCK_PARTICIPANTS = [
-  { name: '김민수', dept: '컴퓨터공학과', time: '10분 전' },
-  { name: '박지현', dept: '소프트웨어학과', time: '1시간 전' },
-  { name: '이도현', dept: '인공지능전공', time: '2시간 전' }
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -32,10 +29,10 @@ function showToast(message) {
     toast.className = 'toast-msg';
     document.body.appendChild(toast);
   }
-  
+
   toast.textContent = message;
   toast.classList.add('show');
-  
+
   setTimeout(() => {
     toast.classList.remove('show');
   }, 2500);
@@ -62,7 +59,7 @@ function initCountdown() {
   const ampm = hours >= 12 ? '오후' : '오전';
   const displayHour = hours % 12 || 12;
   const formattedMinutes = min < 10 ? '0' + min : min;
-  
+
   targetDescEl.textContent = `${month}월 ${date}일(${day}) ${ampm} ${displayHour}:${formattedMinutes} 시작`;
 
   function updateTimer() {
@@ -108,7 +105,7 @@ function initCountdown() {
 // ==========================================================================
 function initCalendar() {
   const gcalBtn = document.getElementById('btn-gcal');
-  
+
   // Event details: 2026-07-06 17:00 ~ 2026-07-08 20:00 (KST) -> UTC is -9 hours
   // 2026-07-06 17:00:00 KST -> 2026-07-06 08:00:00 UTC
   // 2026-07-08 20:00:00 KST -> 2026-07-08 11:00:00 UTC
@@ -116,7 +113,7 @@ function initCalendar() {
   const details = encodeURIComponent('재미있고 유익한 수업이니 많은 참여 부탁드립니다. (3일간 진행)');
   const location = encodeURIComponent(EVENT_LOCATION);
   const dates = '20260706T080000Z/20260708T110000Z'; // UTC Format
-  
+
   gcalBtn.href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${text}&dates=${dates}&details=${details}&location=${location}`;
 }
 
@@ -130,7 +127,7 @@ function initGallery() {
   const dots = document.querySelectorAll('.dot');
   const prevBtn = document.getElementById('slider-prev');
   const nextBtn = document.getElementById('slider-next');
-  
+
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
   const lightboxClose = document.getElementById('lightbox-close');
@@ -146,7 +143,7 @@ function initGallery() {
   // Set position based on index
   function updateSliderPosition() {
     wrapper.style.transform = `translateX(-${currentIndex * 33.3333}%)`;
-    
+
     // Update dots
     dots.forEach((dot, index) => {
       if (index === currentIndex) {
@@ -193,16 +190,16 @@ function initGallery() {
   function touchEnd() {
     isDragging = false;
     cancelAnimationFrame(animationID);
-    
+
     const movedBy = currentTranslate - prevTranslate;
-    
+
     // Swipe threshold (50px)
     if (movedBy < -50 && currentIndex < slideCount - 1) {
       currentIndex += 1;
     } else if (movedBy > 50 && currentIndex > 0) {
       currentIndex -= 1;
     }
-    
+
     goToSlide(currentIndex);
     prevTranslate = -currentIndex * (wrapper.offsetWidth / slideCount);
   }
@@ -234,7 +231,7 @@ function initGallery() {
 function initMapAndLocation() {
   const copyBtn = document.getElementById('btn-copy-address');
   const naverMapBtn = document.getElementById('btn-naver-map');
-  
+
   copyBtn.addEventListener('click', () => {
     navigator.clipboard.writeText(EVENT_LOCATION).then(() => {
       showToast('주소가 복사되었습니다.');
@@ -281,15 +278,15 @@ function initRSVP() {
   function renderParticipants() {
     countEl.textContent = participants.length;
     listEl.innerHTML = '';
-    
+
     // Display last 3 participants
     const recent = participants.slice(-3).reverse();
     recent.forEach(p => {
       const item = document.createElement('div');
       item.className = 'status-recent-item';
-      
+
       const initial = p.name ? p.name.charAt(0) : '참';
-      
+
       item.innerHTML = `
         <div class="status-item-info">
           <div class="status-item-avatar">${initial}</div>
@@ -306,7 +303,7 @@ function initRSVP() {
 
   function escapeHTML(str) {
     if (!str) return '';
-    return str.replace(/[&<>'"]/g, 
+    return str.replace(/[&<>'"]/g,
       tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
     );
   }
@@ -321,46 +318,41 @@ function initRSVP() {
     renderParticipants();
     showToast('모든 신청자 데이터가 초기화되었습니다.');
   });
-    e.preventDefault();
-    
-    const nameVal = document.getElementById('rsvp-name').value.trim();
-    const phoneVal = document.getElementById('rsvp-phone').value.trim();
-    const deptVal = document.getElementById('rsvp-dept').value.trim();
-    
-    if (!nameVal || !phoneVal || !deptVal) return;
+  form.addEventListener('submit', e => {
+  e.preventDefault();
+  const nameVal = document.getElementById('rsvp-name').value.trim();
+  const phoneVal = document.getElementById('rsvp-phone').value.trim();
+  const deptVal = document.getElementById('rsvp-dept').value.trim();
 
-    // Add new participant
-    const newParticipant = {
-      name: nameVal,
-      dept: deptVal,
-      time: '방금 전'
-    };
+  if (!nameVal || !phoneVal || !deptVal) return;
 
-    participants.push(newParticipant);
-    
-    try {
-      localStorage.setItem('rsvp_participants', JSON.stringify(participants));
-    } catch (err) {
-      console.error(err);
-    }
-    
-    renderParticipants();
-    
-    // Toggle view with nice animation
-    form.classList.add('hidden');
-    successState.classList.remove('hidden');
-    
-    showToast('참가 신청이 성공적으로 등록되었습니다.');
-  });
-
-  resetBtn.addEventListener('click', () => {
-    form.reset();
-    successState.classList.add('hidden');
-    form.classList.remove('hidden');
-  });
-
-  // Initial render
+  const newParticipant = {
+    name: nameVal,
+    dept: deptVal,
+    time: '방금 전'
+  };
+  participants.push(newParticipant);
+  try {
+    localStorage.setItem('rsvp_participants', JSON.stringify(participants));
+  } catch (err) {
+    console.error(err);
+  }
   renderParticipants();
+  form.classList.add('hidden');
+  successState.classList.remove('hidden');
+  showToast('참가 신청이 성공적으로 등록되었습니다.');
+});
+
+// Duplicate RSVP handling removed
+
+resetBtn.addEventListener('click', () => {
+  form.reset();
+  successState.classList.add('hidden');
+  form.classList.remove('hidden');
+});
+
+// Initial render
+renderParticipants();
 }
 
 // ==========================================================================
@@ -368,7 +360,7 @@ function initRSVP() {
 // ==========================================================================
 function initSharing() {
   const shareBtn = document.getElementById('btn-share');
-  
+
   shareBtn.addEventListener('click', () => {
     const shareData = {
       title: '\'AI 앱 제작소\' 비교과 수업 초대장',
